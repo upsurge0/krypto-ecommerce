@@ -22,8 +22,8 @@ const ShoppingItem = ({
             </span>
 
             <div className='flex justify-between pt-2 text-gray-500 px-1 pb-1'>
-                <AiFillHeart className='icon hover:bg-slate-200' />
-                <BsCartPlus className='icon hover:bg-slate-200' />
+                <AiFillHeart className='icon' />
+                <BsCartPlus className='icon' />
             </div>
         </div>
     )

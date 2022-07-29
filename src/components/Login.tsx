@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import axiosInstance from '../utils/axiosConfig'
 import { useNavigate, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
+import { loginOrRegister } from '../redux/user'
+import { Root } from 'postcss'
 
 interface Props {
     register?: boolean
@@ -12,8 +16,10 @@ const Login = ({ register }: Props) => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState('')
     const navigate = useNavigate()
+    const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn)
+    const dispatch = useDispatch()
 
-    const loginOrRegister = async (e: React.SyntheticEvent): Promise<void> => {
+    const handleSubmit = async (e: React.SyntheticEvent): Promise<void> => {
         e.preventDefault()
         if (register) {
             if (password !== confirmPassword) {
@@ -26,6 +32,7 @@ const Login = ({ register }: Props) => {
                     password,
                 })
                 navigate('/')
+                dispatch(loginOrRegister(res.data))
             } catch (error: unknown) {
                 setError(error.response.data)
                 return
@@ -40,6 +47,7 @@ const Login = ({ register }: Props) => {
                     throw Error("Incorrect Password")
                 }
                 navigate('/')
+                dispatch(loginOrRegister(res.data))
             } catch (error: unknown) {
                 setError(error.response.data)
                 return
@@ -55,7 +63,7 @@ const Login = ({ register }: Props) => {
         <div className='flex items-center justify-center h-[90vh]'>
             <form
                 className='flex flex-col shadow-md px-10 py-5 space-y-4 w-full max-w-[400px]'
-                onSubmit={loginOrRegister}
+                onSubmit={handleSubmit}
             >
                 <h1 className='text-3xl font-medium'>
                     {register ? 'Register' : 'Login'}

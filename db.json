@@ -9,6 +9,11 @@
       "email": "jane@gmail.com",
       "password": "$2a$10$q4lT.mI5ualMsFsMupZog.dx7eKhL4U3SoGADl9uYXY9LZ7N7b5WS",
       "id": 2
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$t2lddESQWSRIfe3BsJPUh.3jb3OJ1vKXrs7sKua8j.GdoiUnoGod6",
+      "id": 3
     }
   ],
   "products": [
