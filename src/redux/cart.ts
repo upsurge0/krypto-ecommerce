@@ -8,10 +8,12 @@ export interface CartItem extends Product {
 
 export interface CartState {
     items: CartItem[]
+    error: string | null
 }
 
 const initialState: CartState = {
     items: [],
+    error: null
 }
 
 export const userSlice = createSlice({
@@ -19,33 +21,38 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         addItem: (state, action: PayloadAction<Omit<CartItem, 'quantity'>>) => {
-            const item = {...action.payload, quantity: 1}
-            if(!state.items.find(i => i.id === item.id))
+            const item = { ...action.payload, quantity: 1 }
+            if (!state.items.find((i) => i.id === item.id)){
                 state.items.push(item)
-            // else return('Already added to cart')
+                state.error = null
+            }
+            else state.error = 'Item already added to cart'
         },
         increaseQuantity: (state, action: PayloadAction<number>) => {
             const item = state.items.find((item) => item.id === action.payload)
-            
-            if (item){
+
+            if (item) {
                 item.quantity += 1
                 // state.items = [item, ...state.items]
-            } 
+            }
         },
         decreaseQuantity: (state, action: PayloadAction<number>) => {
             const item = state.items.find((item) => item.id === action.payload)
-            
-            if (item && item?.quantity !== 1){
+
+            if (item && item?.quantity !== 1) {
                 item.quantity -= 1
-            } 
+            }
         },
         removeItem: (state, action: PayloadAction<number>) => {
-            state.items = state.items.filter(item => item.id !== action.payload)
-        }
+            state.items = state.items.filter(
+                (item) => item.id !== action.payload
+            )
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addItem, increaseQuantity, decreaseQuantity, removeItem } = userSlice.actions
+export const { addItem, increaseQuantity, decreaseQuantity, removeItem } =
+    userSlice.actions
 
 export default userSlice.reducer

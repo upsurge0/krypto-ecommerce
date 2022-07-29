@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
+import { BsCheck2Circle } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Appbar from '../components/Appbar'
 import CartItem from '../components/CartItem'
+import Modal from '../components/Modal'
 import { RootState } from '../redux/store'
 import axiosInstance from '../utils/axiosConfig'
 
@@ -10,16 +13,22 @@ type Props = {}
 const Cart = (props: Props) => {
     const items = useSelector((state: RootState) => state.cart.items)
     const user = useSelector((state: RootState) => state.user)
-    const [price, setPrice] = useState<number>()
+    const navigate = useNavigate()
+    const [price, setPrice] = useState<number>(0)
     const deliveryCharge = 100
+    const discount = 0
+    const [showModal, setShowModal] = useState(false)
 
     const placeOrder = () => {
-        if (user.isLoggedIn)
+        if (user.isLoggedIn) {
             axiosInstance.post('/orders', {
                 items: items,
                 userId: user.id,
+                total: price + deliveryCharge - discount
             })
-        else alert('You need to be logged in')
+            setShowModal(true)
+        }
+        else navigate('/login')
     }
 
     useEffect(() => {
@@ -62,7 +71,7 @@ const Cart = (props: Props) => {
                                         <span className='flex-grow'>
                                             Discount Price
                                         </span>{' '}
-                                        <span>0</span>
+                                        <span>{discount}</span>
                                     </div>
                                     <div className='flex gap-12'>
                                         <span className='flex-grow'>
@@ -73,7 +82,7 @@ const Cart = (props: Props) => {
                                 </div>
                                 <div className='flex pt-4 gap-12'>
                                     <span className='flex-grow'>Total</span>{' '}
-                                    <span>₹ {price ?? 0 + deliveryCharge}</span>
+                                    <span>₹ {price + deliveryCharge - discount}</span>
                                 </div>
                             </div>
                         </div>
@@ -87,6 +96,12 @@ const Cart = (props: Props) => {
                     </div>
                 )}
             </div>
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <div className='text-xl flex items-center gap-2'>
+                    <BsCheck2Circle className='text-green-500 text-2xl'/>
+                    <span>Successfully placed order</span>
+                </div>
+            </Modal>
         </div>
     )
 }
