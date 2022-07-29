@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .hoverAnimation {
+        @apply hover:bg-blue-500 rounded-full
+         cursor-pointer px-4 py-2 xl:w-auto xl:h-auto xl:px-4 transition duration-200 ease-out;
+    }
+
+    .icon {
+        @apply cursor-pointer w-9 h-9 hover:bg-blue-500 p-[5px] flex items-center justify-center rounded-full transition ease-out;
+    }
+}
