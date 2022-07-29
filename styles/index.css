@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 @layer components {
     .hoverAnimation {
         @apply hover:bg-blue-500 rounded-full

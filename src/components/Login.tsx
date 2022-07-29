@@ -1,11 +1,62 @@
+import { useEffect, useState } from 'react'
+import axiosInstance from '../utils/axiosConfig'
+import { useNavigate, Link } from 'react-router-dom'
+
 interface Props {
     register?: boolean
 }
 
 const Login = ({ register }: Props) => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+
+    const loginOrRegister = async (e: React.SyntheticEvent): Promise<void> => {
+        e.preventDefault()
+        if (register) {
+            if (password !== confirmPassword) {
+                setError('Passwords do not match')
+                return
+            }
+            try {
+                const res = await axiosInstance.post('/register', {
+                    email,
+                    password,
+                })
+                navigate('/')
+            } catch (error: unknown) {
+                setError(error.response.data)
+                return
+            }
+        } else {
+            try {
+                const res = await axiosInstance.post('/login', {
+                    email,
+                    password,
+                })
+                if(res.status === 400) {
+                    throw Error("Incorrect Password")
+                }
+                navigate('/')
+            } catch (error: unknown) {
+                setError(error.response.data)
+                return
+            }
+        }
+        setError('')
+    }
+
+    useEffect(() => {
+        console.log({ email, password, confirmPassword })
+    }, [email, password, confirmPassword])
     return (
         <div className='flex items-center justify-center h-[90vh]'>
-            <div className='flex flex-col shadow-md px-10 py-5 space-y-4 w-full max-w-[400px]'>
+            <form
+                className='flex flex-col shadow-md px-10 py-5 space-y-4 w-full max-w-[400px]'
+                onSubmit={loginOrRegister}
+            >
                 <h1 className='text-3xl font-medium'>
                     {register ? 'Register' : 'Login'}
                 </h1>
@@ -13,17 +64,23 @@ const Login = ({ register }: Props) => {
                     type='email'
                     className='outline-none bg-[#f2f5f9] rounded-full pl-3 py-2'
                     placeholder='Email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
                     type='password'
                     className='outline-none bg-[#f2f5f9] rounded-full pl-3 py-2'
                     placeholder='Password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 {register && (
                     <input
                         type='password'
                         className='outline-none bg-[#f2f5f9] rounded-full pl-3 py-2'
                         placeholder='Confirm Password'
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 )}
                 <div className='flex flex-col space-y-2'>
@@ -32,12 +89,15 @@ const Login = ({ register }: Props) => {
                     </button>
                     <span>
                         {register ? 'Already have an account?' : 'New user?'}
-                        <span className='text-primary cursor-pointer pl-2 hover:underline'>
+                        <Link to={register ? '/login' : '/register'} className='text-primary cursor-pointer pl-2 hover:underline'>
                             {register ? 'Log In' : 'Create an Account'}
-                        </span>
+                        </Link>
+                        {error !== '' && (
+                            <div className='text-red-500'>{error}</div>
+                        )}
                     </span>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

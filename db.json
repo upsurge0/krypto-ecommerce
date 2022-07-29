@@ -1,5 +1,16 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "john@gmail.com",
+      "password": "$2a$10$joCBrNhZgiORi4KpoILQnO391VKmQu9kjCIMPSQ/AWzAqURi4RsLK",
+      "id": 1
+    },
+    {
+      "email": "jane@gmail.com",
+      "password": "$2a$10$q4lT.mI5ualMsFsMupZog.dx7eKhL4U3SoGADl9uYXY9LZ7N7b5WS",
+      "id": 2
+    }
+  ],
   "products": [
     {
       "id": 1,
