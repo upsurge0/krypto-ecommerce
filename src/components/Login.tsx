@@ -16,7 +16,7 @@ const Login = ({ register }: Props) => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState('')
     const navigate = useNavigate()
-    const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn)
+    const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn)
     const dispatch = useDispatch()
 
     const handleSubmit = async (e: React.SyntheticEvent): Promise<void> => {
