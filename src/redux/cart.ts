@@ -48,11 +48,14 @@ export const userSlice = createSlice({
                 (item) => item.id !== action.payload
             )
         },
+        clearItems: (state) => {
+            state.items = []
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addItem, increaseQuantity, decreaseQuantity, removeItem } =
+export const { addItem, increaseQuantity, decreaseQuantity, removeItem , clearItems} =
     userSlice.actions
 
 export default userSlice.reducer

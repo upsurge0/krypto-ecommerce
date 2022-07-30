@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { BsCheck2Circle } from 'react-icons/bs'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Appbar from '../components/Appbar'
 import CartItem from '../components/CartItem'
 import Modal from '../components/Modal'
+import { clearItems } from '../redux/cart'
 import { RootState } from '../redux/store'
 import axiosInstance from '../utils/axiosConfig'
 
@@ -18,17 +19,17 @@ const Cart = (props: Props) => {
     const deliveryCharge = 100
     const discount = 0
     const [showModal, setShowModal] = useState(false)
+    const dispatch = useDispatch()
 
     const placeOrder = () => {
         if (user.isLoggedIn) {
             axiosInstance.post('/orders', {
                 items: items,
                 userId: user.id,
-                total: price + deliveryCharge - discount
+                total: price + deliveryCharge - discount,
             })
             setShowModal(true)
-        }
-        else navigate('/login')
+        } else navigate('/login')
     }
 
     useEffect(() => {
@@ -82,7 +83,9 @@ const Cart = (props: Props) => {
                                 </div>
                                 <div className='flex pt-4 gap-12'>
                                     <span className='flex-grow'>Total</span>{' '}
-                                    <span>₹ {price + deliveryCharge - discount}</span>
+                                    <span>
+                                        ₹ {price + deliveryCharge - discount}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -96,9 +99,16 @@ const Cart = (props: Props) => {
                     </div>
                 )}
             </div>
-            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+            <Modal
+                isOpen={showModal}
+                onClose={() => {
+                    setShowModal(false)
+                    dispatch(clearItems())
+                    navigate('/')
+                }}
+            >
                 <div className='text-xl flex items-center gap-2'>
-                    <BsCheck2Circle className='text-green-500 text-2xl'/>
+                    <BsCheck2Circle className='text-green-500 text-2xl' />
                     <span>Successfully placed order</span>
                 </div>
             </Modal>
