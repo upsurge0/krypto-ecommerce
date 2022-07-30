@@ -20,7 +20,7 @@
     "scripts": {
         "start": "vite",
         "dev": "vite",
-        "build": "vite build",
+        "build": "json-server -m ./node_modules/json-server-auth --watch db.json --port 5000 & vite build",
         "server": "json-server -m ./node_modules/json-server-auth --watch db.json --port 5000"
     },
     "eslintConfig": {
