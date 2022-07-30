@@ -5,8 +5,8 @@ As for the hiring task of Krypto - this is the Front-End Task to build an ecomme
 **Frameworks  and Technologies  used:** React, NodeJS, TypeScript, Vite, Redux Toolkit and React Router Dom
 
 **Section:**
-[Running the Application]() | [Website Functionally and Features]() |
-[Other FAQs/Points]()
+[Running the Application](https://github.com/upsurge0/krypto-ecommerce/blob/main/README.md#running-the-application-locally) | [Website Functionally and Features](https://github.com/upsurge0/krypto-ecommerce/blob/main/README.md#website-functionally-and-features) |
+[Other FAQs/Points](https://github.com/upsurge0/krypto-ecommerce/blob/main/README.md#other-faqspoints)
 
  # Running the application Locally
  
