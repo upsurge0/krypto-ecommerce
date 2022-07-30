@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SyntheticEvent, useState } from 'react'
 import Modal from './Modal'
 import { RootState } from '../redux/store'
-import { addFavourite } from '../redux/favourite'
+import { addFavourite, FavouriteState, setError } from '../redux/favourite'
 import axiosInstance from '../utils/axiosConfig'
+import { FavouriteData } from '../types/serverData'
 
 const ShoppingItem = ({
     id,
@@ -23,7 +24,9 @@ const ShoppingItem = ({
     const [showModal, setShowModal] = useState(false)
     const [event, setEvent] = useState<'cart' | 'favourites'>()
     const cartError = useSelector((state: RootState) => state.cart.error)
-    const favouriteError = useSelector((state: RootState) => state.favourite.error)
+    const favouriteError = useSelector(
+        (state: RootState) => state.favourite.error
+    )
     const userId = useSelector((state: RootState) => state.user.id)
 
     const addToCart = (e: SyntheticEvent) => {
@@ -33,17 +36,27 @@ const ShoppingItem = ({
         setShowModal(true)
     }
 
-    const addToFavourites = (e: SyntheticEvent) => {
+    const addToFavourites = async (e: SyntheticEvent) => {
         e.stopPropagation()
         const item = { id, amount, description, image, rating, title }
         if (userId) {
-            dispatch(addFavourite(item))
-            axiosInstance.post('/favourites', {
-                item,
-                userId
-            })
-            setEvent('favourites')
-            setShowModal(true)
+            try {
+                const res = await axiosInstance.get('/favourites')
+                const fav = (res.data as FavouriteData[]).find(
+                    (fav) => fav.item.id === id
+                )
+                if (!fav) {
+                    dispatch(addFavourite(item))
+                    axiosInstance.post('/favourites', {
+                        item,
+                        userId,
+                    })
+                } else {
+                    dispatch(setError('Item already added to favourites'))
+                }
+                setEvent('favourites')
+                setShowModal(true)
+            } catch (error) {}
         } else {
             navigate('/login')
         }
@@ -66,10 +79,16 @@ const ShoppingItem = ({
             </span>
 
             <div className='flex justify-between pt-2 text-gray-500 px-1 pb-1'>
-                <AiFillHeart className='icon' onClick={addToFavourites}/>
+                <AiFillHeart className='icon' onClick={addToFavourites} />
                 <BsCartPlus className='icon' onClick={addToCart} />
             </div>
-            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+            <Modal
+                isOpen={showModal}
+                onClose={() => {
+                    setShowModal(false)
+                    dispatch(setError(null))
+                }}
+            >
                 <div className='text-xl flex items-center gap-2'>
                     {cartError || favouriteError ? (
                         <>

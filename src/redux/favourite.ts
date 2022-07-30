@@ -18,16 +18,19 @@ export const userSlice = createSlice({
     reducers: {
         addFavourite: (state, action: PayloadAction<Product>) => {
             const item = { ...action.payload }
+            state.error = null
             if (!state.items.find((i) => i.id === item.id)){
                 state.items.push(item)
-                state.error = null
             }
             else state.error = 'Item already added to favourites'
         },
+        setError: (state, action: PayloadAction<string>) => {
+            state.error = action.payload
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addFavourite } = userSlice.actions
+export const { addFavourite, setError } = userSlice.actions
 
 export default userSlice.reducer

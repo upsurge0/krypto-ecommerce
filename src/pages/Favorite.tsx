@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import Appbar from '../components/Appbar'
-import LoginComp from '../components/Login'
 import ShoppingItem from '../components/ShoppingItem'
-import { Product } from '../types/product'
+import { RootState } from '../redux/store'
+import { FavouriteData } from '../types/serverData'
 import axiosInstance from '../utils/axiosConfig'
 
-const Favourite = (props: Props) => {
-    const [favourites, setFavourites] = useState<Product[]>([])
+const Favourite = () => {
+    const [favourites, setFavourites] = useState<FavouriteData[]>([])
+    const user = useSelector((state: RootState) => state.user)
+    const userFavourites = favourites.filter((fav) => fav.userId === user.id)
 
     useEffect(() => {
         axiosInstance.get('/favourites').then((res) => {
-            // @ts-ignore
-            const items = (res.data as []).map((i) => i.item)
-            setFavourites(items)
+            setFavourites(res.data)
         })
     }, [])
 
@@ -23,11 +24,16 @@ const Favourite = (props: Props) => {
         <div className='min-h-screen overflow-hidden'>
             <Appbar />
             <span className='text-3xl pl-10 py-5'>Favourites</span>
-            <div className='grid xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 w-[80%] mx-auto gap-x-16 gap-y-4 py-3'>
-                {favourites.map((favourite) => (
-                    <ShoppingItem {...favourite} />
-                ))}
-            </div>
+
+            {userFavourites.length > 0 ? (
+                <div className='grid xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 w-[80%] mx-auto gap-x-16 gap-y-4 py-3'>
+                    {userFavourites.map((favourite) => (
+                        <ShoppingItem {...favourite.item} />
+                    ))}
+                </div>
+            ) : (
+                <h4>You have no items in favourites</h4>
+            )}
         </div>
     )
 }

@@ -19,6 +19,21 @@
       "email": "test1@gmail.com",
       "password": "$2a$10$ZRZZbPy1ywaDv0qTuYZYTOO8hF1iCbH/uzx51A7Xg0kgRehl6gebK",
       "id": 4
+    },
+    {
+      "email": "newtest@gmail.com",
+      "password": "$2a$10$fEjjIUcYJrD95a6HW8Du0.8B0OvT8bcrTWWJ0zIV3BGzrI7Iqu0A2",
+      "id": 5
+    },
+    {
+      "email": "tests@gmail.com",
+      "password": "$2a$10$7sA5ifxVl4B9xhgSt6r1Rug5HdnxrsJUDmLuK33oNc7EYhBcuXEpm",
+      "id": 6
+    },
+    {
+      "email": "proximity220@gmail.com",
+      "password": "$2a$10$b62YcrYsL/86d.Zn/mJ8O.PcpgbMFLaQAISmypKfwWoCuaCQeZH2y",
+      "id": 7
     }
   ],
   "products": [
@@ -467,6 +482,38 @@
       "userId": 3,
       "total": 300,
       "id": 15
+    },
+    {
+      "items": [
+        {
+          "id": 3,
+          "amount": "400",
+          "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
+          "image": "https://i.pinimg.com/564x/55/82/bc/5582bc23ad7619f10f09d10141e7a6b9.jpg",
+          "rating": "4.0",
+          "title": "U.S. POLO ASSN - Men's Solid Regular Fit Cotton Polo",
+          "quantity": 2
+        }
+      ],
+      "userId": 1,
+      "total": 900,
+      "id": 16
+    },
+    {
+      "items": [
+        {
+          "id": 3,
+          "title": "U.S. POLO ASSN - Men's Solid Regular Fit Cotton Polo",
+          "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
+          "image": "https://i.pinimg.com/564x/55/82/bc/5582bc23ad7619f10f09d10141e7a6b9.jpg",
+          "amount": "400",
+          "rating": "4.0",
+          "quantity": 1
+        }
+      ],
+      "userId": 1,
+      "total": 500,
+      "id": 17
     }
   ],
   "favourites": [
@@ -484,18 +531,6 @@
     },
     {
       "item": {
-        "id": 1,
-        "amount": "200",
-        "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
-        "image": "https://i.pinimg.com/originals/25/0d/a3/250da32c889b624849bf828ae2ece420.jpg",
-        "rating": "4.0",
-        "title": "EYEBOGLER Regular Fit Men's Cotton T-Shirt"
-      },
-      "userId": 1,
-      "id": 2
-    },
-    {
-      "item": {
         "id": 2,
         "amount": "300",
         "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
@@ -504,31 +539,19 @@
         "title": "RodZen - Men's Cotton Half Sleeve Regular Fit Striped T-Shirt"
       },
       "userId": 1,
+      "id": 2
+    },
+    {
+      "item": {
+        "id": 3,
+        "amount": "400",
+        "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
+        "image": "https://i.pinimg.com/564x/55/82/bc/5582bc23ad7619f10f09d10141e7a6b9.jpg",
+        "rating": "4.0",
+        "title": "U.S. POLO ASSN - Men's Solid Regular Fit Cotton Polo"
+      },
+      "userId": 6,
       "id": 3
-    },
-    {
-      "item": {
-        "id": 1,
-        "amount": "200",
-        "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
-        "image": "https://i.pinimg.com/originals/25/0d/a3/250da32c889b624849bf828ae2ece420.jpg",
-        "rating": "4.0",
-        "title": "EYEBOGLER Regular Fit Men's Cotton T-Shirt"
-      },
-      "userId": 4,
-      "id": 4
-    },
-    {
-      "item": {
-        "id": 1,
-        "amount": "200",
-        "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
-        "image": "https://i.pinimg.com/originals/25/0d/a3/250da32c889b624849bf828ae2ece420.jpg",
-        "rating": "4.0",
-        "title": "EYEBOGLER Regular Fit Men's Cotton T-Shirt"
-      },
-      "userId": 4,
-      "id": 5
     }
   ]
 }
