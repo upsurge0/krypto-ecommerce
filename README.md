@@ -1,81 +1,92 @@
-# Ecommerce (React) Coding Assessment
+##  Introduction
 
-## Overview
+As for the hiring task of Krypto - this is the Front-End Task to build an ecommerce website. The steps to run the application locally are mentioned in a later section.
 
-To complete this assessment, you will need to use this [Ecommerce-boilerplate](https://github.com/gurukishore111/Ecommerce-boilerplate) web app.
+**Frameworks  and Technologies  used:** React, NodeJS, TypeScript, Vite, Redux Toolkit and React Router Dom
 
-The purpose of this assessment is to assess your **skills and approach to composing a simple web app** given an API feed.
+**Section:**
+[Running the Application]() | [Website Functionally and Features]() |
+[Other FAQs/Points]()
 
-## What to do?
+ # Running the application Locally
+ 
+Download the ZIP File from GitHub and open it in any code editor. Using the terminal at the location of the folder run the below command:
 
-Your goal is to implement an eCommerce application. The CSS framework/library is totally up to you.
+    npm i
+    npm run server
 
-Although it's a very basic exercise, we will be looking for simple, well-designed, well-commented, and tested code in the submission.
+![Output](https://imgur.com/DZBUBOu.png)
+Open another terminal while keeping the earlier one running in background. Run the following command:
 
-Please include a `README` with setup instructions and any other documentation you created as part of your solution.
+    npm run dev
 
-Also, add very short info for the following to your `README`:
+The application will begin to run at the localhost. The link will also appear in the terminal.
+![Output](https://imgur.com/w5fwloY.png)
 
-- Describe all the application functionalities
-- Are there any improvements you could make to your submission?
-- What would you do differently if you were allocated more time?
+## Website Functionally and Features
 
-Once you complete implementation, please add the link to the hosted repository (e.g. Github). Alternatively, you may submit your code as a ZIP file too.
+![Flowchart](https://imgur.com/abhe5jL.png)
 
-(NOTE: You have to use the latest version of v18 and react-router-dom v6)
+The website is responsive in nature in all the above mentioned pages.
 
-## How should the application work?
+The HomePage / Product Page is the Front Page. It's accessible without login as well. Only the favourites feature isn't available to the user unless they are signed in. If you click favourite without login - it will prompt you to login.
+- A grid of all the various products with their key features in it.
+- Each product can further be opened for more details
 
-The user of this react application should be able to view all the products. The application should have the following workflow,
+![Homepage](https://i.imgur.com/qLqY4ea.png)
 
-1. Create the login/register functionality.
-2. Once the user is authenticated
-3. Users can add the products to the cart page
-4. Also user can add their favourite products
+**Responsive Website Mobile Version:**
 
-## Development Setup
+![Homepage Mobile](https://imgur.com/LerPfZa.png)
 
-- Clone this repo
-- `npm install` - To install the dependencies
-- `npm run server` - To start the JSON server
-- `npm start` - To start the react app
+**Upon clicking login button:**
+- Create Account - Ensure the password is strong in nature
+- Login
 
-## This project's user interface should like this.
+![Login](https://i.imgur.com/5RHyOzQ.png)
 
-### Login/Register page
+**Favourties Tab:**
+- This feature can only be utilised if logined.
+- Add remove items from Favourite Tab.
 
-<img width="1512" alt="Screenshot 2022-07-24 at 10 44 13 AM" src="https://user-images.githubusercontent.com/52570524/180701451-5ccce009-0384-426c-b1bc-d7536fd7b142.png">
+![Login](https://imgur.com/ZsP19lP.png)
 
-### Home page
+**Product Item:**
+- Has the detailed description of the product
+- Direct Buy Now which takes the person to the cart. Second, Add to cart, it only adds the item to the cart.
 
-<img width="1512" alt="Screenshot 2022-07-24 at 10 45 58 AM" src="https://user-images.githubusercontent.com/52570524/180701523-b679c753-68ff-47f1-9a1b-f4cc04d88fea.png">
+![Product Item](https://i.imgur.com/sClvXvX.png)
 
-### Product detail page
+**Cart:**
+- Auto Calculation of total amount.
+- Add more items or remove them
 
-<img width="675" alt="Screenshot 2022-07-24 at 10 53 17 AM" src="https://user-images.githubusercontent.com/52570524/180701655-7c3d3120-ff81-445a-81d9-b2152db8a776.png">
+![Cart](https://i.imgur.com/hfufkNe.png)
+- When the cart has no items in the bag.
+![Cart Empty](https://i.imgur.com/zMzYKPR.png)
 
-### Cart page
+##  Other FAQs/Points
 
-<img width="1415" alt="Screenshot 2022-07-24 at 10 50 18 AM" src="https://user-images.githubusercontent.com/52570524/180701661-a587033d-4616-40f8-9260-dfd3e8b97152.png">
+**Are there any improvements you could make to your submission?**
+ 
+ Concept Improvements:
+- There is no option to enter discount code even though in the final calculation there is a category for calculating the discount.
+- Options for users to write review comments after login.
+- Categories within the application for different types of products.
 
-<img width="1472" alt="Screenshot 2022-07-24 at 10 51 16 AM" src="https://user-images.githubusercontent.com/52570524/180701674-31c7e11c-56b3-4f24-83c4-e9d582c4b3f8.png">
+Technology Improvements:
+- Using an alternative to JSON Server for scalability such as ExpressJS
+- Adding SEO to the website by using framework such as NextJS
+- User would stayed logined on the device it previously logs into.
 
-## API Usage
+**What would you do differently if you were allocated more time?**
 
-API can be launched using npm run server.
-| Endpoint | Result |
-|------------------------------|-----------------------------------------------------|
-| /users | Lists all available users |
-| /products | Lists all available products |
-| /orders | Lists all available orders  
-| /favourites | Lists all available favourites
+ - Adding a cache layer to reduce the load time.
+ - Using Kubernetes for scalability and automatic load balancing.
+  - Store and Select from various address saved for a user profile.
+ -  Different lists within favourites.
+ - Automatic redirects back to the original page upon required to login instead of the default homepage.
 
-More info about API usage can be found at the [Postman Collection](https://www.getpostman.com/collections/9f28d57ae334429e1f1f)
+ **Original Boiler Plate/Task:** [Link here](https://github.com/gurukishore111/Ecommerce-boilerplate)
 
-## Bonus
-
-- Feel free to add functionality (not mandatory)
-- Use redux/context for state management
-- Well explained readme (screenshot etc)
-
----
+> Submission by Austin Jerry - austin.jerry2019@vitbhopal.ac.in
